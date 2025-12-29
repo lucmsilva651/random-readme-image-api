@@ -1,7 +1,7 @@
 {
   "scripts": {
-    "start": "bun src/index.js",
-    "dev": "bun src/index.js"
+    "start": "bun api/index.js",
+    "dev": "bun api/index.js"
   },
   "dependencies": {
     "express": "^4.21.2",
