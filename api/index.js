@@ -53,15 +53,15 @@ app.get("/", async (req, res) => {
 
     try {
       lastImageBuffer = await sharp(imagePath)
-        .resize(220, 220, { fit: "cover" })
+        .resize(300, 300, { fit: "cover" })
         .webp({
           force: true,
-          effort: 6
+          effort: 4
         })
         .toBuffer();
 
       requestCount++;
-      res.writeHead(200, { 'Content-Type': 'image/jpeg' });
+      res.writeHead(200, { 'Content-Type': 'image/webp' });
       res.end(lastImageBuffer);
     } catch (error) {
       res.status(500).json({ error: "Error processing image." });
