@@ -17,7 +17,7 @@ app.use((req, res, next) => {
   if (userAgent.includes('github-camo')) {
     return next();
   } else {
-    res.status(403)).json({ error: "Only requests made by Camo are allowed." });
+    res.status(403).json({ error: "Only requests made by Camo are allowed." });
   }
 });
 
