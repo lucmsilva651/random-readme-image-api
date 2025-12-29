@@ -29,7 +29,7 @@ app.get("/", async (req, res) => {
     resetTime = now + 5 * 60 * 1000;
   }
 
-  if (requestCount >= 5) {
+  if (requestCount >= 20) {
     if (lastImageBuffer) {
       res.writeHead(200, { 'Content-Type': 'image/jpeg' });
       return res.end(lastImageBuffer);
