@@ -17,14 +17,7 @@ app.use((req, res, next) => {
   if (userAgent.includes('github-camo')) {
     return next();
   } else {
-    res.status(403).send(`
-    <p>403 Forbidden. Cope harder!</p>
-    <script>
-      setTimeout(() => {
-          window.location.href = "https://github.com/lucmsilva651/random-img-api";
-      }, 5000);
-    </script>
-    `);
+    res.status(403)).json({ error: "Only requests made by Camo are allowed." });
   }
 });
 
@@ -36,7 +29,7 @@ app.get("/", async (req, res) => {
     resetTime = now + 5 * 60 * 1000;
   }
 
-  if (requestCount >= 2) {
+  if (requestCount >= 5) {
     if (lastImageBuffer) {
       res.writeHead(200, { 'Content-Type': 'image/jpeg' });
       return res.end(lastImageBuffer);
@@ -60,7 +53,7 @@ app.get("/", async (req, res) => {
 
     try {
       lastImageBuffer = await sharp(imagePath)
-        .resize(300, 300, { fit: "cover" })
+        .resize(220, 220, { fit: "cover" })
         .webp({
           force: true,
           effort: 6
